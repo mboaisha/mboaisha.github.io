@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Hello! Thanks for giving my blog a visit. 
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+Hold tight while I think of a clever "About Me" page.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+If you have to contact me, I'd prefer if you do so via [LinkedIn](https://www.linkedin.com/in/mboaisha/) or [Twitter](https://twitter.com/mhboaisha)
