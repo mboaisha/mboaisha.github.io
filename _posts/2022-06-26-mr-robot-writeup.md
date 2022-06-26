@@ -18,13 +18,13 @@ As such, it is best to host the VMs in "Host-Only" Mode in the same subnet.
 
 Once we launch the mr-robot VM. We are greeted with a login screen.
 
-![Interesting](/assets/images/img2.PNG)
+![Interesting](/assets/images/img2.png)
 
 Obviously, we do not know the credentials to the box. There must be a way to enter externally (i.e. from network-facing services.)
 
 For a quick network discovery I used *NetDiscover*, which is readily available in Kali Linux.
 
-![Hosts found](/assets/images/img3.PNG)
+![Hosts found](/assets/images/img3.png)
 
 A default *nmap* scan shows this result for 192.168.56.103:
 
@@ -41,7 +41,7 @@ MAC Address: 08:00:27:BA:66:66 (Oracle VirtualBox virtual NIC)
 
 Seems about right, Browsing to the IP via *Firefox* gives me a faux boot sequence and a menu:
 
-![whoa](/assets/images/img4.PNG)
+![whoa](/assets/images/img4.png)
 
 
 There isn't anything obviously exploitable at first glance just cool Mr Robot stuff from the show.
@@ -91,7 +91,7 @@ nikto -h http://192.168.56.103/
 
 which gave us plenty of results to go through.
 
-![niktoScan](/assets/images/img5.PNG)
+![niktoScan](/assets/images/img5.png)
 
 The results tell us two things:
 
@@ -125,23 +125,23 @@ uniq fsocity.dic > fsocity1.txt
 
 Now we look into the possible Wordpress instance, and what do you know, there is one!
 
-![wpfound](/assets/images/img6.PNG)
+![wpfound](/assets/images/img6.png)
 
 I tried couple of [default credentials](https://varyingvagrantvagrants.org/docs/en-US/default-credentials/) in hopes that it would be a misconfigured instance of Wordpress, none of them worked. However, I noticed something:
 
-![userwrong](/assets/images/img7.PNG)
+![userwrong](/assets/images/img7.png)
 
 The login screen is telling us that the username is wrong. Naturally, if I give it a valid username it will tell me the password is wrong. As such, little brute forcing is in order.
 
 In this case, I used Burp Suite. The Intruder module is really easy to use to conduct quick bruteforce attacks. I let the Intruder run for awhile and looked at the length of the requests send back to us.
 
-![elliotfound](/assets/images/img8.PNG)
+![elliotfound](/assets/images/img8.png)
 
 Looks like "Elliot" yielded a different request length than the other requests.
 
 After inputting the username with gibberish password in the login page I get this:
 
-![elliotfail](/assets/images/img9.PNG)
+![elliotfail](/assets/images/img9.png)
 
 Nice! now we know that **Elliot** is a user in this Wordpress instance. Now we use Burp Suite's Intruder again to brute force the password.
 
@@ -149,27 +149,27 @@ Since the Community Edition of Burp Suite throttles our Intruder module to a poi
 
 I used the fuzzer to get Elliot's password. Seeing that one value caught the most unique response byte size, I decided to try that password.
 
-![elliotpassword](/assets/images/img10.PNG)
+![elliotpassword](/assets/images/img10.png)
 
 Bingo! The credentials worked!!
 
-![inwordpress](/assets/images/img11.PNG)
+![inwordpress](/assets/images/img11.png)
 
 Now we need a way to get in OS-level. This can be easily done via some sort of webshell. Where do we put our webshell?
 
 Initially, I wanted to install a plug-in to be able to edit file on the web server but turns out Wordpress has an editor by default:
 
-![wpeditor](/assets/images/img12.PNG)
+![wpeditor](/assets/images/img12.png)
 
 In this case, I will use *weevely*, one of my favorite webshells.
 
 First we generate the webshell:
 
-![webshell](/assets/images/img13.PNG)
+![webshell](/assets/images/img13.png)
 
 then we copy paste the content into the 404.php page template via the editor.
 
-![pasteshell](/assets/images/img14.PNG)
+![pasteshell](/assets/images/img14.png)
 
 Now, looking at the Wordpress [source code](https://build.trac.wordpress.org/browser/branches#4.3/wp-content/themes/twentyfifteen) (hooray for open source software!) we see that the 404.php resides in this directory:
 
@@ -177,21 +177,21 @@ Now, looking at the Wordpress [source code](https://build.trac.wordpress.org/bro
 http://<host>/wp-content/themes/twentyfifteen/404.php
 ```
 
-![wpdir](/assets/images/img15.PNG)
+![wpdir](/assets/images/img15.png)
 
 
 Next, we attempt the connection to the pasted webshell:
-![whoamishell](/assets/images/img16.PNG)
+![whoamishell](/assets/images/img16.png)
 
 The connection was successful and it appears we are inside as **daemon**
 
 We eventually traverse to the **home** folder and see that one user (robot) having said folder.
 
-![robotuser](/assets/images/img17.PNG)
+![robotuser](/assets/images/img17.png)
 
 Looking inside the folder, we see some promising content:
 
-![inrobot](/assets/images/img18.PNG)
+![inrobot](/assets/images/img18.png)
 
 We see that permissions flag for the key is:
 ```
@@ -220,7 +220,7 @@ I ended up using a PHP reverse shell I found packaged with Kali Linux at ```/usr
 
 We replace the 404.php file with the new webshell, listen to port 1234 via netcat, go the page and we connect again.
 
-![othershelled](/assets/images/img19.PNG)
+![othershelled](/assets/images/img19.png)
 
 Still encountered the same issue with being unable to switch users via *su*
 
@@ -228,7 +228,7 @@ After doing some research, I stumbled upon [this answer](https://evertpot.com/18
 
 Sure enough, both Python 2.7 and 3 are installed on the system.
 
-![pythonc](/assets/images/img20.PNG)
+![pythonc](/assets/images/img20.png)
 
 After following the answer I was able to get into a shell. Still as **Daemon**. Thankfully, *su* worked this time around. We find the key:
 
@@ -236,7 +236,7 @@ After following the answer I was able to get into a shell. Still as **Daemon**. 
 822c73956184f694993bede3eb39f959
 ```
 
-![suwork](/assets/images/img21.PNG)
+![suwork](/assets/images/img21.png)
 
 Now we need to go hunting for the third flag. 
 
@@ -255,7 +255,7 @@ Turns out combing through ``` find / -writable -type d 2>/dev/null      # world-
 
 That particular version of nmap has an "interactive" mode.... which happens to give root regardless of what user you use to launch it.
 
-![nmaproot](/assets/images/img22.PNG)
+![nmaproot](/assets/images/img22.png)
 
 Going to the root folder, we find the 3rd key:
 ```
