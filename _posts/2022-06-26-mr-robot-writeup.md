@@ -13,7 +13,7 @@ It's a good practice to run vulnerable virtual machines in an isolated network. 
 
 As such, it is best to host the VMs in "Host-Only" Mode in the same subnet.
 
-![imagepls](/assets/images/img1.PNG)
+![imagepls](/assets/images/img1.png)
 
 
 Once we launch the mr-robot VM. We are greeted with a login screen.
