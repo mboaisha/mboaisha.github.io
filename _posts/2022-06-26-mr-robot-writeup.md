@@ -2,7 +2,7 @@
 layout: post
 title: Mr. Robot - Vulnhub Write-up
 ---
-**SPOILERS AHEAD. YOU HAVE BEEN WARNED**
+Spoilers ahead. You have been warned.
 
 **Difficulty**: Easy
 **Link**: https://www.vulnhub.com/entry/mr-robot-1,151/
