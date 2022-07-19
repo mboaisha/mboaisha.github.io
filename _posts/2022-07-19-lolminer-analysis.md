@@ -7,7 +7,7 @@ I got that malware analysis itch recently and decided to work on a sample I came
 ## A background on coinminer malware
 In 2017, many things happened in the cyber world, WannaCry was unleashed upon the world allegedly by the Lazarus Group, Equifax was breached and NotPetya caused havoc in Ukraine and spilled over globally.
 
-![[/assets/images/btcchart1.png]]
+![btcpricechart2017](/assets/images/btcchart1.png)
 In the sidelines however, Bitcoin was gaining momentum by breaking the $1000 mark eventually skyrocking to one of many all time highs Bitcoin would eventually have: $20,000. The cryptocurrency's insane rally likely spurred cybercrime elements to think outside the box, especially since demand for GPUs soared during the crypto market fever. 
 
 The earliest coinminer-style malware that I could remember is Adylkuzz, a malware that rode the ETERNALBLUE (the exploit used to propogate WannaCry) in bandwagon to mine secretly mine Monero. Before 2017, coinminer malware were much rarer in the wild and relied on a skilled adversary to pull off as illustrated by [the incident uncovered by a certain security researcher](https://threatpost.com/dvr-infected-with-bitcoin-mining-malware/105167/) which found an infected digital video recorder device that was an infected with a Bitcoin Miner (In 2014, when Bitcoin was still trading in three digits!)
@@ -74,7 +74,7 @@ I like to start with a simple string analysis of the binary, as it can give clue
 
 ### Decompilation and cursory static analysis
 Since the UPX string was present, I checked whether the binary is packed:
-![[/assets/images/die1.png]]
+![detectiteasyrun](/assets/images/die1.png)
 
 Detect It Easy does not show any packers. It does show that the binary uses .NET, looks like a good time to throw it in dnSpy and take a closer look. (Disclaimer: I am not a reverse engineering expert by any means. Expect *amateur hour* galore from now on!)
 
@@ -95,7 +95,7 @@ The binary got decompiled with no issues, upon taking a cursory look of the code
 - Disable Microsoft Defender notifications.
 
 The config class contains juicy information:
-![[/assets/images/minerconfig1.png]]
+![lolMinerconfig1](/assets/images/minerconfig1.png)
 Ethereum Classic Wallet: `0x4dd10a91e43bc7761e56da692471cd38c4aaa426`
 Mining Pool: `asia1-etc.ethermine.org:14444`
 The mutex we saw earlier: `JWSFRGFQXQ`
@@ -110,10 +110,10 @@ The transaction originated from 0xdf7d7e053933b5cc24372f878c90e62dadad5d42, an E
 
 The transaction flow on the wallet appear to be "linear" with no diverging flow, just sending it to [0x216D44960291E4129435c719217a7ECAe8c29927](https://etc.tokenview.com/en/address/0x216d44960291e4129435c719217a7ecae8c29927) which has a lot of $ETC... Which leads me to believe it's an address of an Exchange.
 
-![[/assets/images/etc-visual-transactions1.png]]
+![etctransactions1](/assets/images/etc-visual-transactions1.png)
 
 Now we can start looking at the address on the Ethereum blockchain..... I tried to use [Breadcrumbs.app](https://www.breadcrumbs.app/home) but then you get into a situation like this:
-![[/assets/images/breadcrumbs1.jpg]]
+![breadcrumbsMess1](/assets/images/breadcrumbs1.jpg)
 
 A graph that's bit difficult to read and make sense of. I was unable to make the graph clearer to read, though it did allow me to make some key observations and assesments:
 - The malware wallet is funded by a mix of crypto originating from centralized exchanges and Tornado.Cash, a crypto tumbler. Crypto tumblers can be used to obfuscate the origin of crypto.
