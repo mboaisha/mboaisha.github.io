@@ -96,9 +96,9 @@ The binary got decompiled with no issues, upon taking a cursory look of the code
 
 The config class contains juicy information:
 ![lolMinerconfig1](/assets/images/minerconfig1.png)
-Ethereum Classic Wallet: `0x4dd10a91e43bc7761e56da692471cd38c4aaa426`
-Mining Pool: `asia1-etc.ethermine.org:14444`
-The mutex we saw earlier: `JWSFRGFQXQ`
+- Ethereum Classic Wallet: `0x4dd10a91e43bc7761e56da692471cd38c4aaa426`
+- Mining Pool: `asia1-etc.ethermine.org:14444`
+- The mutex we saw earlier: `JWSFRGFQXQ`
 
 ##  OSINT research notes
 ### On-chain analysis
