@@ -1,6 +1,6 @@
 ---
 layout: post
-title: lolminer, an interesting sample
+title: lolMiner, an interesting sample
 ---
 I got that malware analysis itch recently and decided to work on a sample I came across. Haven't touched coinminer-style malware in awhile.
 
