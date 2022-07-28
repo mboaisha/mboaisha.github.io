@@ -21,7 +21,7 @@ The earliest coinminer-style malware that I could remember is Adylkuzz, a malwar
 **SHA256:** f78aa003a899db2d88065eefcad78377325e31bc2f7c4d6ce19e21773cd27d23
 **Imphash:** f34d5f2d4577ed6d9ceec516c1f5a744
 **SSDEEP:** 	98304:+XjW2zyivc/oHruK4uOQRKRvIgfxgGtaeOwvPDUG2WImwOsxJ:+XjWtivIoHStuOFlIogGc7wvAepwTxJ
-**Magic: ** application/vnd.microsoft.portable-executable, (4D 5A)
+**Magic:** application/vnd.microsoft.portable-executable, (4D 5A)
 **Sandbox Results:**
 - [VirusTotal](https://www.virustotal.com/gui/file/f78aa003a899db2d88065eefcad78377325e31bc2f7c4d6ce19e21773cd27d23/detection)
 - [Any.Run](https://app.any.run/tasks/62c04e96-3540-4a76-9739-456a27b78602/)
