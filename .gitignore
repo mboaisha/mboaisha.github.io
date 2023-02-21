@@ -14,3 +14,5 @@ package.json
 .obsidian/appearance.json
 .obsidian/app.json
 templates/year-month-title.md
+.obsidian/workspace.json
+.obsidian/core-plugins-migration.json

@@ -14,21 +14,21 @@ The earliest coinminer-style malware that I could remember is Adylkuzz, a malwar
 
 
 ## Basic sample facts and triage
-**Filename:** s.exe
-**Size:** 4.77 mb (4773888 bytes)
-**MD5:** 601ccdad5d43290b18ce9c0728e52d38
-**SHA1:** d6a142337788d09e98af6665ea44899b248e46fd
-**SHA256:** f78aa003a899db2d88065eefcad78377325e31bc2f7c4d6ce19e21773cd27d23
-**Imphash:** f34d5f2d4577ed6d9ceec516c1f5a744
-**SSDEEP:** 	98304:+XjW2zyivc/oHruK4uOQRKRvIgfxgGtaeOwvPDUG2WImwOsxJ:+XjWtivIoHStuOFlIogGc7wvAepwTxJ
-**Magic:** application/vnd.microsoft.portable-executable, (4D 5A)
-**Sandbox Results:**
-- [VirusTotal](https://www.virustotal.com/gui/file/f78aa003a899db2d88065eefcad78377325e31bc2f7c4d6ce19e21773cd27d23/detection)
-- [Any.Run](https://app.any.run/tasks/62c04e96-3540-4a76-9739-456a27b78602/)
-- [Hybrid-Analysis](https://www.hybrid-analysis.com/sample/f78aa003a899db2d88065eefcad78377325e31bc2f7c4d6ce19e21773cd27d23/62a07e8694c1667f4c5a4ac3)
-- [JoeSandbox](https://www.joesandbox.com/analysis/1009230) 
-- [Filescan.io](https://www.filescan.io/uploads/62a0c5116aa17a21fc2cba22/reports/2adf557d-f249-45a1-9021-abdb2a332ba0/overview)
-- [Intezer](https://analyze.intezer.com/analyses/281eccd9-7e33-4ddb-90ed-bc1d4f994bfa)
+- **Filename:** s.exe
+- **Size:** 4.77 mb (4773888 bytes)
+- **MD5:** 601ccdad5d43290b18ce9c0728e52d38
+- **SHA1:** d6a142337788d09e98af6665ea44899b248e46fd
+- **SHA256:** f78aa003a899db2d88065eefcad78377325e31bc2f7c4d6ce19e21773cd27d23
+- **Imphash:** f34d5f2d4577ed6d9ceec516c1f5a744
+- **SSDEEP:** 98304:+XjW2zyivc/oHruK4uOQRKRvIgfxgGtaeOwvPDUG2WImwOsxJ:+XjWtivIoHStuOFlIogGc7wvAepwTxJ
+- **Magic:** application/vnd.microsoft.portable-executable, (4D 5A)
+- **Sandbox Results:**
+	- [VirusTotal](https://www.virustotal.com/gui/file/f78aa003a899db2d88065eefcad78377325e31bc2f7c4d6ce19e21773cd27d23/detection)
+	- [Any.Run](https://app.any.run/tasks/62c04e96-3540-4a76-9739-456a27b78602/)
+	- [Hybrid-Analysis](https://www.hybrid-analysis.com/sample/f78aa003a899db2d88065eefcad78377325e31bc2f7c4d6ce19e21773cd27d23/62a07e8694c1667f4c5a4ac3)
+	- [JoeSandbox](https://www.joesandbox.com/analysis/1009230) 
+	- [Filescan.io](https://www.filescan.io/uploads/62a0c5116aa17a21fc2cba22/reports/2adf557d-f249-45a1-9021-abdb2a332ba0/overview)
+	- [Intezer](https://analyze.intezer.com/analyses/281eccd9-7e33-4ddb-90ed-bc1d4f994bfa)
 
 ## Hands-on analysis and notes
 ### Strings analysis
@@ -54,9 +54,8 @@ I like to start with a simple string analysis of the binary, as it can give clue
 	- `Q29uc2VudFByb21wdEJlaGF2aW9yQWRtaW4=`
 		- `ConsentPromptBehaviorAdmin`
 	- `UHJvbXB0T25TZWN1cmVEZXNrdG9w`
-		- `PromptOnSecureDesktop`
-
-	- `U2V0LUl0ZW1Qcm9wZXJ0eSAtUGF0aCAnSEtMTTpcXFNPRlRXQVJFXFxNaWNyb3NvZnRcXFdpbmRvd3MgRGVmZW5kZXIgU2VjdXJpdHkgQ2VudGVyXFxOb3RpZmljYXRpb25zJyAtTmFtZSBEaXNhYmxlTm90aWZpY2F0aW9ucyAtVmFsdWUgMQ==`
+		- `PromptOnSecureDesktop`	
+		- `U2V0LUl0ZW1Qcm9wZXJ0eSAtUGF0aCAnSEtMTTpcXFNPRlRXQVJFXFxNaWNyb3NvZnRcXFdpbmRvd3MgRGVmZW5kZXIgU2VjdXJpdHkgQ2VudGVyXFxOb3RpZmljYXRpb25zJyAtTmFtZSBEaXNhYmxlTm90aWZpY2F0aW9ucyAtVmFsdWUgMQ==`
 		- `Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows Defender Security Center\\Notifications' -Name DisableNotifications -Value 1`
 - Mining pool addresses
 	- `asia1-etc.ethermine.org:14444`
