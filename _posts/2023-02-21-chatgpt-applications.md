@@ -80,7 +80,7 @@ I am not exactly a Python or shell scripting wizard (yet), as such, it takes me 
 
 **Question:** Can you write a Python script so that when I give it IoCs, it will write them out as a Splunk query?
 
-**Answer: **
+**Answer:**
 ![python-task1](/assets/images/python-task1.png)
 
 ### Search engine, but better
